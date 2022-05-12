@@ -1,25 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter, Route, Routes, Navigate, useParams} from "react-router-dom";
+import ListMessage from "./components/ListMessage";
+import NewMessage from "./components/NewMessage";
+import ItemMessage from "./components/ItemMessage";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <BrowserRouter>
+        <div id="container">
+
+          <Routes>
+            <Route path='/' element={<ListMessage />} />
+            <Route path='/posts/new' element={<NewMessage />} />
+            <Route path='/posts/:id' element={<ItemMessage />} />
+          </Routes>
+
+        </div>
+      </BrowserRouter>
+      );
 }
 
 export default App;
