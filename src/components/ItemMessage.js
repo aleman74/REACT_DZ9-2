@@ -34,6 +34,10 @@ export default function ItemMessage() {
                 (data) => {
                     console.log('loadData - OK', data);
                     setItem(data);
+
+
+                    let v = typeof (data.created);
+                    console.log('v - ', v);
                 },
                 // Примечание: важно обрабатывать ошибки именно здесь, а не в блоке catch(),
                 // чтобы не перехватывать исключения из ошибок в самих компонентах.
@@ -41,6 +45,14 @@ export default function ItemMessage() {
                     console.log('loadData - ERROR', error);
                 }
             );
+    }
+
+    // Определяем сколько прошло времени в минутах
+    function GetMin(v_time)
+    {
+        let result = (Date.now() - v_time) / (60 * 1000);
+
+        return Math.floor(result);
     }
 
     // Удаляем данные
@@ -118,7 +130,6 @@ export default function ItemMessage() {
             <Navigate to='/' replace />
         );
 
-
     // Режим редактирования
     if (isEdit)
         return (
@@ -141,7 +152,7 @@ export default function ItemMessage() {
                     <img src={require('./foto.jpg')}/>
                     <div>
                         <div className="name">Иван Иванович</div>
-                        <div>{item.created + ' мин'}</div>
+                        <div>{GetMin(item.created) + ' мин'}</div>
                     </div>
                 </div>
                 <div className="context">{item.content}</div>

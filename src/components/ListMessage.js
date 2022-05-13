@@ -61,6 +61,14 @@ export default function ListMessage() {
         }, []
     );
 
+    // Определяем сколько прошло времени в минутах
+    function GetMin(v_time)
+    {
+        let result = (Date.now() - v_time) / (60 * 1000);
+
+        return Math.floor(result);
+    }
+
     return (
         <>
             <div className="button load-component">
@@ -78,7 +86,7 @@ export default function ListMessage() {
                                 <img src={require('./foto.jpg')}/>
                                 <div>
                                     <div className="name">Иван Иванович</div>
-                                    <div>{item.created + ' мин'}</div>
+                                    <div>{GetMin(item.created) + ' мин'}</div>
                                 </div>
                             </div>
                             <div className="context">{item.content}</div>
